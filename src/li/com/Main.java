@@ -1,6 +1,8 @@
 package li.com;
 
-public class Test {
+public class Main {
+	public static final String delimiter = ","; 
+	
 	public static void main(String[] args) {
 		// create four-element Payable array
 		Payable[] payableObjects = new Payable[4];
@@ -16,5 +18,13 @@ public class Test {
 			System.out.printf("%s \n%s: $%,.2f\n\n", currentPayable.toString(), "payment due",
 					currentPayable.getPaymentAmount());
 		} // end for
+		
+		System.out.println("Check for print info of object");
+		
+		Employee e;
+		for (Payable currentPayable : payableObjects) {
+			e = (Employee) currentPayable;
+			System.out.println(e.getInfo());
+		}
 	} // end main
 }
