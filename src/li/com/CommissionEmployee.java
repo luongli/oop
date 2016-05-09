@@ -5,8 +5,8 @@ public class CommissionEmployee extends Employee {
 	private double commissionRate; // commission percentage
 	
 	// five-argument constructor
-	public CommissionEmployee(String first, String last, String ssn, double sales, double rate) {
-		super(first, last, ssn);
+	public CommissionEmployee(String first, String last, String ssn, Date bday, double sales, double rate) {
+		super(first, last, ssn, bday);
 		setGrossSales(sales);
 		setCommissionRate(rate);
 	} // end five-argument CommissionEmployee constructor
@@ -49,4 +49,15 @@ public class CommissionEmployee extends Employee {
 		return String.format("%s: %s\n%s: $%,.2f; %s: %.2f", "commission employee", super.toString(), "gross sales",
 				getGrossSales(), "commission rate", getCommissionRate());
 	} // end method toString
+	
+	@Override
+	public String getInfo() {
+		String info = "CommissionEmployee" + Main.delimiter +
+				super.getFirstName() + Main.delimiter +
+				super.getLastName() + Main.delimiter +
+				super.getSocialSecurityNumber() + Main.delimiter +
+				grossSales + Main.delimiter +
+				commissionRate;
+		return info;
+	}
 }

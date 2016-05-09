@@ -11,12 +11,22 @@ public abstract class Employee implements Payable {
 	private String firstName;
 	private String lastName;
 	private String socialSecurityNumber;
+	private Date birthday;
 
-	// three-argument constructor
-	public Employee(String first, String last, String ssn) {
+	public Date getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
+	}
+
+	// four-argument constructor
+	public Employee(String first, String last, String ssn, Date bday) {
 		firstName = first;
 		lastName = last;
 		socialSecurityNumber = ssn;
+		birthday = bday;
 	} // end three-argument Employee constructor
 	
 	// set first name
@@ -57,4 +67,5 @@ public abstract class Employee implements Payable {
 					getSocialSecurityNumber());
 	} // end method toString
 	
+	public abstract String getInfo();
 }// end abstract class Employee

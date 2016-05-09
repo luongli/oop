@@ -4,8 +4,8 @@ public class BasePlusCommissionEmployee extends CommissionEmployee {
 	private double baseSalary; // base salary per week
 	
 	// six-argument constructor
-	public BasePlusCommissionEmployee(String first, String last, String ssn, double sales, double rate, double salary) {
-		super(first, last, ssn, sales, rate);
+	public BasePlusCommissionEmployee(String first, String last, String ssn, Date bday, double sales, double rate, double salary) {
+		super(first, last, ssn, bday, sales, rate);
 		setBaseSalary(salary); // validate and store base salary
 	} // end six-argument BasePlusCommissionEmployee constructor
 	
@@ -33,4 +33,14 @@ public class BasePlusCommissionEmployee extends CommissionEmployee {
 	public String toString() {
 		return String.format("%s %s; %s: $%,.2f", "base-salaried", super.toString(), "base salary", getBaseSalary());
 	} // end method toString
+	
+	@Override
+	public String getInfo() {
+		String info = "BasePlusCommissionEmployee" + Main.delimiter +
+				super.getFirstName() + Main.delimiter +
+				super.getLastName() + Main.delimiter +
+				super.getSocialSecurityNumber() + Main.delimiter +
+				baseSalary;
+		return info;
+	}
 }

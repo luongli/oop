@@ -5,8 +5,8 @@ public class HourlyEmployee extends Employee {
 	private double hours; // hours worked for week
 	
 	// five-argument constructor
-	public HourlyEmployee(String first, String last, String ssn, double hourlyWage, double hoursWorked) {
-		super(first, last, ssn);
+	public HourlyEmployee(String first, String last, String ssn, Date bday, double hourlyWage, double hoursWorked) {
+		super(first, last, ssn, bday);
 		setWage(hourlyWage); // validate hourly wage
 		setHours(hoursWorked); // validate hours worked
 	} // end five-argument HourlyEmployee constructor
@@ -52,4 +52,15 @@ public class HourlyEmployee extends Employee {
 		return String.format("hourly employee: %s\n%s: $%,.2f; %s: %,.2f", super.toString(), "hourly wage", getWage(),
 				"hours worked", getHours());
 	} // end method toString
+	
+	@Override
+	public String getInfo() {
+		String info = "HourlyEmployee" + Main.delimiter +
+				super.getFirstName() + Main.delimiter +
+				super.getLastName() + Main.delimiter +
+				super.getSocialSecurityNumber() + Main.delimiter +
+				wage + Main.delimiter +
+				hours;
+		return info;
+	}
 }

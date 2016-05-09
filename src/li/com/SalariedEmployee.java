@@ -5,8 +5,8 @@ public class SalariedEmployee extends Employee {
 	//private double baseSalary;
 
 	// four-argument constructor
-	public SalariedEmployee(String first, String last, String ssn, double salary) {
-		super(first, last, ssn); // pass to Employee constructor
+	public SalariedEmployee(String first, String last, String ssn, Date bday, double salary) {
+		super(first, last, ssn, bday); // pass to Employee constructor
 		setWeeklySalary(salary); // validate and store salary
 	} // end four-argument SalariedEmployee constructor
 	
@@ -34,4 +34,14 @@ public class SalariedEmployee extends Employee {
 	public String toString() {
 		return String.format("salaried employee: %s\n%s: $%,.2f", super.toString(), "weekly salary", getWeeklySalary());
 	} // end method toString
+	
+	@Override
+	public String getInfo() {
+		String info = "SalariedEmployee" + Main.delimiter +
+				super.getFirstName() + Main.delimiter +
+				super.getLastName() + Main.delimiter +
+				super.getSocialSecurityNumber() + Main.delimiter +
+				weeklySalary;
+		return info;
+	}
 }
