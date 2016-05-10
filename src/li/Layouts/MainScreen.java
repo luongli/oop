@@ -1,7 +1,16 @@
 package li.Layouts;
 
+import li.com.*;
 import java.awt.EventQueue;
 import java.awt.event.KeyEvent;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -9,6 +18,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JFileChooser;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -25,17 +35,29 @@ import javax.swing.JLabel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
+import li.com.Department;
+import li.com.Employee;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class MainScreen {
 
 	private JFrame frame;
 	private JTable table;
 	private JTextField text_sum;
+	private String path;
+	private ArrayList company;
+	private int nDepartment;
+	
+	
+	// elements of the main windows
+	private JMenuBar menuBar;
 
 	/**
 	 * Launch the application.
@@ -92,6 +114,8 @@ public class MainScreen {
 		btn_Add.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btn_Add.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				// TODO
+				JOptionPane.showMessageDialog(null, "chimchim ", "ThÃ´ng bÃ¡o", JOptionPane.CLOSED_OPTION);
 			}
 		});
 		btn_Add.setBounds(718, 40, 89, 42);
@@ -101,12 +125,20 @@ public class MainScreen {
 		btn_delete.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btn_delete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				// TODO:
 			}
 		});
 		btn_delete.setBounds(718, 101, 89, 42);
 		frame.getContentPane().add(btn_delete);
 		
 		JButton btn_Mod = new JButton("Modify");
+		btn_Mod.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				// TODO
+				JOptionPane.showMessageDialog(null, "huyhuyhuy ", "ThÃ´ng bÃ¡o", JOptionPane.CLOSED_OPTION);
+			}
+		});
 		btn_Mod.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btn_Mod.setBounds(718, 164, 89, 42);
 		frame.getContentPane().add(btn_Mod);
@@ -182,7 +214,7 @@ public class MainScreen {
 		); // end call to addListSelectionListener
 		
 		
-		JMenuBar menuBar = new JMenuBar();
+		menuBar = new JMenuBar();
 		frame.setJMenuBar(menuBar);
 		JMenu mFile = new JMenu("File");
 		JMenuItem itemAbout = new JMenuItem("About");
@@ -193,6 +225,48 @@ public class MainScreen {
 	    	}
 	    });
 	    JMenuItem itemOpen = new JMenuItem("Open");
+	    itemOpen.addActionListener(new ActionListener() {
+	    	public void actionPerformed(ActionEvent e) {
+	    		System.out.println("ok");
+	    		JFileChooser chooser = new JFileChooser(System.getProperty("user.dir"));
+	    		int returnVal = chooser.showOpenDialog(frame);
+	    		if(returnVal == JFileChooser.APPROVE_OPTION) {
+	    			path = chooser.getCurrentDirectory().getPath()
+	    					+ File.separator
+	    					+ chooser.getSelectedFile().getName();
+	    			loadData(path);
+    		    }
+	    	}
+	    	
+	    	public void loadData(String path) {
+	    		try{
+					FileInputStream fileIn = new FileInputStream(path);
+		            ObjectInputStream in = new ObjectInputStream(fileIn);// input the read file.
+		            company = (ArrayList) in.readObject();// allocate it to the object file already instanciated.
+		            in.close();//closes the input stream.
+		            fileIn.close();//closes the file data stream.
+		            nDepartment = company.size();
+		            Department d1 = (Department)company.get(0);
+		            Employee e[] = d1.getEmployees();
+		            System.out.println("length of e = " + e.length);
+		            System.out.println("currentSize = " + d1.getCurrentSize());
+		            for(int i = 0; i < d1.getCurrentSize(); i++){
+		            	System.out.println(e[i].getFirstName());
+		            }
+				}catch(Exception e){
+					System.out.println(e.toString());
+				}
+	    	}
+	    });
+	    itemOpen.addMouseListener(new MouseAdapter() {
+	    	/**
+	    	 * handle open menu
+	    	 */
+	    	@Override
+	    	public void mouseClicked(MouseEvent e) {
+	    		
+	    	}
+	    });
 	    JMenuItem itemSave = new JMenuItem("Save");
 	    JMenuItem itemSaveAs = new JMenuItem("Save As");
 	    
