@@ -230,13 +230,16 @@ public class MainScreen {
 		menuBar = new JMenuBar();
 		frame.setJMenuBar(menuBar);
 		JMenu mFile = new JMenu("File");
-		JMenuItem itemAbout = new JMenuItem("About");
+		JMenu mFile1 = new JMenu("Edit");
+		JMenu mFile2 = new JMenu("About");
+		
 	    JMenuItem itemNew = new JMenuItem("New");
 	    itemNew.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent e) {
 	    		 JOptionPane.showMessageDialog(null, "Báº¡n vá»«a chá»�n New ", "ThÃ´ng bÃ¡o", JOptionPane.CLOSED_OPTION);
 	    	}
 	    });
+	    
 	    JMenuItem itemOpen = new JMenuItem("Open");
 	    itemOpen.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent e) {
@@ -282,25 +285,71 @@ public class MainScreen {
 	    		
 	    	}
 	    });
+	    
 	    JMenuItem itemSave = new JMenuItem("Save");
 	    JMenuItem itemSaveAs = new JMenuItem("Save As");
 	    
-	    // thÃªm cÃ¡c má»¥c menu con vÃ o menu cha lÃ  File
+	    JMenuItem itemAdd1 = new JMenuItem("Add Hourly Employee");
+	    itemAdd1.addActionListener(new ActionListener() {
+	    	public void actionPerformed(ActionEvent e) {
+	    		HourlyGUI hourlyEmployee = new HourlyGUI();
+				hourlyEmployee.setModalityType(Dialog.ModalityType.DOCUMENT_MODAL);
+				hourlyEmployee.setVisible(true);
+	    	}
+	    });
+	    JMenuItem itemAdd2 = new JMenuItem("Add Salaried Employee");
+	    itemAdd2.addActionListener(new ActionListener() {
+	    	public void actionPerformed(ActionEvent e) {
+	    		SalariedGUI salariedEmployee = new SalariedGUI();
+				salariedEmployee.setModalityType(Dialog.ModalityType.DOCUMENT_MODAL);
+				salariedEmployee.setVisible(true);
+	    	}
+	    });
+	    JMenuItem itemAdd3 = new JMenuItem("Add Commission Employee");
+	    itemAdd3.addActionListener(new ActionListener() {
+	    	public void actionPerformed(ActionEvent e) {
+	    		CommissionGUI commissionEmployee = new CommissionGUI();
+				commissionEmployee.setModalityType(Dialog.ModalityType.DOCUMENT_MODAL);
+				commissionEmployee.setVisible(true);
+	    	}
+	    });
+	    JMenuItem itemAdd4 = new JMenuItem("Add Base Plus Commission Employee");
+	    itemAdd4.addActionListener(new ActionListener() {
+	    	public void actionPerformed(ActionEvent e) {
+	    		BasePlusCommissionGUI BPCEmployee = new BasePlusCommissionGUI();
+				BPCEmployee.setModalityType(Dialog.ModalityType.DOCUMENT_MODAL);
+				BPCEmployee.setVisible(true);
+	    	}
+	    	
+	    });
+	    JMenuItem itemDel = new JMenuItem("Delete Employee");
+	    JMenuItem itemMod = new JMenuItem("Modify Employee");
+	    
+	    // add item for menu FILE
         mFile.add(itemNew);
         mFile.add(itemOpen);
         mFile.add(itemSave);
         mFile.add(itemSaveAs);
         
-        // Táº¡o phÃ­m táº¯t cho cÃ¡c menu tÆ°Æ¡ng á»©ng
+        // add item for menu EDIT
+        mFile1.add(itemAdd1);
+        mFile1.add(itemAdd2);
+        mFile1.add(itemAdd3);
+        mFile1.add(itemAdd4);
+        mFile1.add(itemDel);
+        mFile1.add(itemMod);
+        
+        // create an shortcut for item
         itemNew.setMnemonic(KeyEvent.VK_N);
         itemOpen.setMnemonic(KeyEvent.VK_O);
         itemSave.setMnemonic(KeyEvent.VK_S);
         itemSaveAs.setMnemonic(KeyEvent.VK_A);
  
-        // ThÃªm cÃ¡c má»¥c menu cha vÃ o menu chÃ­nh cá»§a Frame
+        // add menu in menubar
         menuBar.add(mFile);
-        menuBar.add(itemAbout);
-        // RiÃªng menu cha About ta khÃ´ng thÃªm menu con vÃ o vÃ¬ má»¥c About chá»‰ cÃ³ 1 lá»±a chá»�n duy nháº¥t
+        menuBar.add(mFile1);
+        menuBar.add(mFile2);
+        
 
 	}
 }

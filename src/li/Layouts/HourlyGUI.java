@@ -16,12 +16,6 @@ import javax.swing.border.EmptyBorder;
 public class HourlyGUI extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
 	private JTextField textField_6;
 	private JTextField textField_7;
 	private JTextField textField_8;
@@ -65,6 +59,8 @@ public class HourlyGUI extends JDialog {
 			textField_6.setBounds(206, 26, 86, 20);
 			contentPanel.add(textField_6);
 			textField_6.setColumns(10);
+	
+
 		}
 		{
 			JLabel lblLastName = new JLabel("Last name");
@@ -77,6 +73,7 @@ public class HourlyGUI extends JDialog {
 			textField_7.setBounds(206, 80, 86, 20);
 			contentPanel.add(textField_7);
 			textField_7.setColumns(10);
+			
 		}
 		{
 			JLabel lblNewLabel = new JLabel("Social Security Number");
