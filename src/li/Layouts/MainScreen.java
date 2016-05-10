@@ -24,6 +24,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 import java.awt.Color;
+import java.awt.Dialog;
+
 import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.event.ListSelectionListener;
@@ -141,6 +143,13 @@ public class MainScreen {
 		}); // end call to addListSelectionListener
 		
 		JButton btn_Add = new JButton("Add");
+		btn_Add.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AddEmployee addEmployee = new AddEmployee();
+				addEmployee.setModalityType(Dialog.ModalityType.DOCUMENT_MODAL);
+				addEmployee.setVisible(true);
+			}
+		});
 		btn_Add.setFont(new Font("Tahoma", Font.PLAIN, 18));
 
 		btn_Add.setBounds(718, 40, 89, 42);
