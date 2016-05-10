@@ -9,9 +9,14 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+
+import li.com.BasePlusCommissionEmployee;
+import li.com.CommissionEmployee;
+import li.com.Date;
 
 public class BasePlusCommissionGUI extends JDialog {
 
@@ -22,13 +27,23 @@ public class BasePlusCommissionGUI extends JDialog {
 	private JTextField textField_3;
 	private JTextField textField_4;
 	private JTextField textField_5;
-	private JTextField textField_6;
-	private JTextField textField_7;
-	private JTextField textField_8;
-	private JTextField textField_9;
-	private JTextField textField_10;
-	private JTextField textField_11;
-	private JTextField textField_12;
+	private JTextField fname_tf;
+	private JTextField lname_tf;
+	private JTextField ssn_tf;
+	private JTextField birthday_tf;
+	private JTextField gsales_tf;
+	private JTextField crate_tf;
+	private JTextField bsalary_tf;
+	
+	private BasePlusCommissionEmployee bce;
+
+	public BasePlusCommissionEmployee getBce() {
+		return bce;
+	}
+
+	public void setBce(BasePlusCommissionEmployee bce) {
+		this.bce = bce;
+	}
 
 	/**
 	 * Launch the application.
@@ -63,10 +78,10 @@ public class BasePlusCommissionGUI extends JDialog {
 			contentPanel.add(lblFirstName);
 		}
 		{
-			textField_6 = new JTextField();
-			textField_6.setBounds(206, 26, 86, 20);
-			contentPanel.add(textField_6);
-			textField_6.setColumns(10);
+			fname_tf = new JTextField();
+			fname_tf.setBounds(206, 26, 86, 20);
+			contentPanel.add(fname_tf);
+			fname_tf.setColumns(10);
 		}
 		{
 			JLabel lblLastName = new JLabel("Last name");
@@ -75,10 +90,10 @@ public class BasePlusCommissionGUI extends JDialog {
 			contentPanel.add(lblLastName);
 		}
 		{
-			textField_7 = new JTextField();
-			textField_7.setBounds(206, 80, 86, 20);
-			contentPanel.add(textField_7);
-			textField_7.setColumns(10);
+			lname_tf = new JTextField();
+			lname_tf.setBounds(206, 80, 86, 20);
+			contentPanel.add(lname_tf);
+			lname_tf.setColumns(10);
 		}
 		{
 			JLabel lblNewLabel = new JLabel("Social Security Number");
@@ -87,10 +102,10 @@ public class BasePlusCommissionGUI extends JDialog {
 			contentPanel.add(lblNewLabel);
 		}
 		{
-			textField_8 = new JTextField();
-			textField_8.setBounds(206, 134, 86, 20);
-			contentPanel.add(textField_8);
-			textField_8.setColumns(10);
+			ssn_tf = new JTextField();
+			ssn_tf.setBounds(206, 134, 86, 20);
+			contentPanel.add(ssn_tf);
+			ssn_tf.setColumns(10);
 		}
 		{
 			JLabel lblNewLabel_1 = new JLabel("Birthday");
@@ -99,10 +114,10 @@ public class BasePlusCommissionGUI extends JDialog {
 			contentPanel.add(lblNewLabel_1);
 		}
 		{
-			textField_9 = new JTextField();
-			textField_9.setBounds(206, 190, 86, 20);
-			contentPanel.add(textField_9);
-			textField_9.setColumns(10);
+			birthday_tf = new JTextField();
+			birthday_tf.setBounds(206, 190, 86, 20);
+			contentPanel.add(birthday_tf);
+			birthday_tf.setColumns(10);
 		}
 		{
 			JLabel lblWage = new JLabel("Gross Sales");
@@ -111,10 +126,10 @@ public class BasePlusCommissionGUI extends JDialog {
 			contentPanel.add(lblWage);
 		}
 		{
-			textField_10 = new JTextField();
-			textField_10.setBounds(459, 24, 86, 20);
-			contentPanel.add(textField_10);
-			textField_10.setColumns(10);
+			gsales_tf = new JTextField();
+			gsales_tf.setBounds(459, 24, 86, 20);
+			contentPanel.add(gsales_tf);
+			gsales_tf.setColumns(10);
 		}
 		{
 			JLabel lblHours = new JLabel("Commission Rate");
@@ -123,10 +138,10 @@ public class BasePlusCommissionGUI extends JDialog {
 			contentPanel.add(lblHours);
 		}
 		{
-			textField_11 = new JTextField();
-			textField_11.setBounds(459, 78, 86, 20);
-			contentPanel.add(textField_11);
-			textField_11.setColumns(10);
+			crate_tf = new JTextField();
+			crate_tf.setBounds(459, 78, 86, 20);
+			contentPanel.add(crate_tf);
+			crate_tf.setColumns(10);
 		}
 		{
 			JLabel lblBaseSalary = new JLabel("Base Salary");
@@ -135,10 +150,10 @@ public class BasePlusCommissionGUI extends JDialog {
 			contentPanel.add(lblBaseSalary);
 		}
 		{
-			textField_12 = new JTextField();
-			textField_12.setColumns(10);
-			textField_12.setBounds(459, 134, 86, 20);
-			contentPanel.add(textField_12);
+			bsalary_tf = new JTextField();
+			bsalary_tf.setColumns(10);
+			bsalary_tf.setBounds(459, 134, 86, 20);
+			contentPanel.add(bsalary_tf);
 		}
 	
 		{
@@ -147,6 +162,30 @@ public class BasePlusCommissionGUI extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton okButton = new JButton("OK");
+				okButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						try{
+							String fname = fname_tf.getText();
+							String lname = lname_tf.getText();
+							String ssString = ssn_tf.getText();
+							Date birthday = Date.parseDate(birthday_tf.getText());
+							double grossSales = Double.parseDouble(gsales_tf.getText());
+							double cRate = Double.parseDouble(crate_tf.getText());
+							double bsalary = Double.parseDouble(bsalary_tf.getText());
+							bce = new BasePlusCommissionEmployee(
+									fname, lname, ssString, birthday,
+									grossSales, cRate, bsalary
+							);
+							dispose();
+						}catch(Exception exc){
+							JOptionPane.showMessageDialog(null,
+									exc.toString(),
+									"Error",
+									JOptionPane.ERROR_MESSAGE
+							);
+						}
+					}
+				});
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);

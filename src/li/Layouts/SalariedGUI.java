@@ -32,7 +32,7 @@ public class SalariedGUI extends JDialog {
 	private JTextField ssn_tf;
 	private JTextField birthday_tf;
 	private JTextField wsalary_tf;
-	private SalariedEmployee se;
+	private SalariedEmployee se = null;
 
 	public SalariedEmployee getSe() {
 		return se;

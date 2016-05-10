@@ -9,19 +9,34 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import li.com.Date;
+import li.com.HourlyEmployee;
+import li.com.SalariedEmployee;
+
 public class HourlyGUI extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField textField_6;
-	private JTextField textField_7;
-	private JTextField textField_8;
-	private JTextField textField_9;
-	private JTextField textField_10;
-	private JTextField textField_11;
+	private JTextField fname_tf;
+	private JTextField lname_tf;
+	private JTextField ssn_tf;
+	private JTextField birthday_tf;
+	private JTextField wage_tf;
+	private JTextField hours_tf;
+	
+	private HourlyEmployee he;
+
+	public HourlyEmployee getHe() {
+		return he;
+	}
+
+	public void setHe(HourlyEmployee he) {
+		this.he = he;
+	}
 
 	/**
 	 * Launch the application.
@@ -55,10 +70,10 @@ public class HourlyGUI extends JDialog {
 			contentPanel.add(lblFirstName);
 		}
 		{
-			textField_6 = new JTextField();
-			textField_6.setBounds(206, 26, 86, 20);
-			contentPanel.add(textField_6);
-			textField_6.setColumns(10);
+			fname_tf = new JTextField();
+			fname_tf.setBounds(206, 26, 86, 20);
+			contentPanel.add(fname_tf);
+			fname_tf.setColumns(10);
 	
 
 		}
@@ -69,10 +84,10 @@ public class HourlyGUI extends JDialog {
 			contentPanel.add(lblLastName);
 		}
 		{
-			textField_7 = new JTextField();
-			textField_7.setBounds(206, 80, 86, 20);
-			contentPanel.add(textField_7);
-			textField_7.setColumns(10);
+			lname_tf = new JTextField();
+			lname_tf.setBounds(206, 80, 86, 20);
+			contentPanel.add(lname_tf);
+			lname_tf.setColumns(10);
 			
 		}
 		{
@@ -82,10 +97,10 @@ public class HourlyGUI extends JDialog {
 			contentPanel.add(lblNewLabel);
 		}
 		{
-			textField_8 = new JTextField();
-			textField_8.setBounds(206, 134, 86, 20);
-			contentPanel.add(textField_8);
-			textField_8.setColumns(10);
+			ssn_tf = new JTextField();
+			ssn_tf.setBounds(206, 134, 86, 20);
+			contentPanel.add(ssn_tf);
+			ssn_tf.setColumns(10);
 		}
 		{
 			JLabel lblNewLabel_1 = new JLabel("Birthday");
@@ -94,10 +109,10 @@ public class HourlyGUI extends JDialog {
 			contentPanel.add(lblNewLabel_1);
 		}
 		{
-			textField_9 = new JTextField();
-			textField_9.setBounds(206, 190, 86, 20);
-			contentPanel.add(textField_9);
-			textField_9.setColumns(10);
+			birthday_tf = new JTextField();
+			birthday_tf.setBounds(206, 190, 86, 20);
+			contentPanel.add(birthday_tf);
+			birthday_tf.setColumns(10);
 		}
 		{
 			JLabel lblWage = new JLabel("Wage");
@@ -106,10 +121,10 @@ public class HourlyGUI extends JDialog {
 			contentPanel.add(lblWage);
 		}
 		{
-			textField_10 = new JTextField();
-			textField_10.setBounds(459, 24, 86, 20);
-			contentPanel.add(textField_10);
-			textField_10.setColumns(10);
+			wage_tf = new JTextField();
+			wage_tf.setBounds(459, 24, 86, 20);
+			contentPanel.add(wage_tf);
+			wage_tf.setColumns(10);
 		}
 		{
 			JLabel lblHours = new JLabel("Hours");
@@ -118,10 +133,10 @@ public class HourlyGUI extends JDialog {
 			contentPanel.add(lblHours);
 		}
 		{
-			textField_11 = new JTextField();
-			textField_11.setBounds(459, 78, 86, 20);
-			contentPanel.add(textField_11);
-			textField_11.setColumns(10);
+			hours_tf = new JTextField();
+			hours_tf.setBounds(459, 78, 86, 20);
+			contentPanel.add(hours_tf);
+			hours_tf.setColumns(10);
 		}
 	
 	
@@ -133,6 +148,26 @@ public class HourlyGUI extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton okButton = new JButton("OK");
+				okButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						try{
+							String fname = fname_tf.getText();
+							String lname = lname_tf.getText();
+							String ssString = ssn_tf.getText();
+							Date birthday = Date.parseDate(birthday_tf.getText());
+							double wage = Double.parseDouble(wage_tf.getText());
+							double hours = Double.parseDouble(hours_tf.getText());
+							he = new HourlyEmployee(fname, lname, ssString, birthday, wage, hours);
+							dispose();
+						}catch(Exception exc){
+							JOptionPane.showMessageDialog(null,
+									exc.toString(),
+									"Error",
+									JOptionPane.ERROR_MESSAGE
+							);
+						}
+					}
+				});
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
