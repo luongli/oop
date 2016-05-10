@@ -174,6 +174,13 @@ public class MainScreen {
 		table.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		table.setRowHeight(40);
 		
+		table.setModel(new DefaultTableModel(
+				new Object[][]{},
+				new String[] {
+					"STT", "Name", "Birthday", "SSN", "Wage"
+				}
+			));
+		
 		TableColumnModel columnModel = table.getColumnModel();
 		columnModel.getColumn(0).setPreferredWidth(30);
 		columnModel.getColumn(1).setPreferredWidth(150);
