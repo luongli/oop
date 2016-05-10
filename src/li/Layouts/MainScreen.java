@@ -1,4 +1,4 @@
-package Layouts;
+package li.Layouts;
 
 import java.awt.EventQueue;
 import java.awt.event.KeyEvent;
@@ -72,10 +72,10 @@ public class MainScreen {
 		JList list;
 		// Create some items to add to the list
 		final String[] listData = {
-					"Phòng R&D", "Phòng Nội Vụ",
-					"Phòng Đối Ngoại", "Phòng Kỉ Luật",
-					"Phòng Văn Thư", "Phòng Thanh Tra",
-					"Phòng Marketing" 	};
+					"PhÃ²ng R&D", "PhÃ²ng Ná»™i Vá»¥",
+					"PhÃ²ng Ä�á»‘i Ngoáº¡i", "PhÃ²ng Ká»‰ Luáº­t",
+					"PhÃ²ng VÄƒn ThÆ°", "PhÃ²ng Thanh Tra",
+					"PhÃ²ng Marketing" 	};
 		final Color[] colors = { Color.BLACK, Color.BLUE,
 						Color.CYAN, Color.DARK_GRAY, Color.GRAY, Color.GREEN,
 						Color.LIGHT_GRAY, Color.MAGENTA, Color.ORANGE, Color.PINK,
@@ -189,29 +189,29 @@ public class MainScreen {
 	    JMenuItem itemNew = new JMenuItem("New");
 	    itemNew.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent e) {
-	    		 JOptionPane.showMessageDialog(null, "Bạn vừa chọn New ", "Thông báo", JOptionPane.CLOSED_OPTION);
+	    		 JOptionPane.showMessageDialog(null, "Báº¡n vá»«a chá»�n New ", "ThÃ´ng bÃ¡o", JOptionPane.CLOSED_OPTION);
 	    	}
 	    });
 	    JMenuItem itemOpen = new JMenuItem("Open");
 	    JMenuItem itemSave = new JMenuItem("Save");
 	    JMenuItem itemSaveAs = new JMenuItem("Save As");
 	    
-	    // thêm các mục menu con vào menu cha là File
+	    // thÃªm cÃ¡c má»¥c menu con vÃ o menu cha lÃ  File
         mFile.add(itemNew);
         mFile.add(itemOpen);
         mFile.add(itemSave);
         mFile.add(itemSaveAs);
         
-        // Tạo phím tắt cho các menu tương ứng
+        // Táº¡o phÃ­m táº¯t cho cÃ¡c menu tÆ°Æ¡ng á»©ng
         itemNew.setMnemonic(KeyEvent.VK_N);
         itemOpen.setMnemonic(KeyEvent.VK_O);
         itemSave.setMnemonic(KeyEvent.VK_S);
         itemSaveAs.setMnemonic(KeyEvent.VK_A);
  
-        // Thêm các mục menu cha vào menu chính của Frame
+        // ThÃªm cÃ¡c má»¥c menu cha vÃ o menu chÃ­nh cá»§a Frame
         menuBar.add(mFile);
         menuBar.add(itemAbout);
-        // Riêng menu cha About ta không thêm menu con vào vì mục About chỉ có 1 lựa chọn duy nhất
+        // RiÃªng menu cha About ta khÃ´ng thÃªm menu con vÃ o vÃ¬ má»¥c About chá»‰ cÃ³ 1 lá»±a chá»�n duy nháº¥t
 
        
 		

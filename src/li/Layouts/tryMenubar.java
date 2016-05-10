@@ -1,4 +1,4 @@
-package Layouts;
+package li.Layouts;
 import java.awt.MenuBar;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,26 +21,26 @@ public class tryMenubar extends JFrame implements ActionListener{
     private JMenuItem itemSaveAs = new JMenuItem("Save As");
  
     public tryMenubar(){
-        // thêm các mục menu con vào menu cha là File
+        // thÃªm cÃ¡c má»¥c menu con vÃ o menu cha lÃ  File
         mFile.add(itemNew);
         mFile.add(itemOpen);
         mFile.add(itemSave);
         mFile.add(itemSaveAs);
  
-        // Tạo phím tắt cho các menu tương ứng
+        // Táº¡o phÃ­m táº¯t cho cÃ¡c menu tÆ°Æ¡ng á»©ng
         itemNew.setMnemonic(KeyEvent.VK_N);
         itemOpen.setMnemonic(KeyEvent.VK_O);
         itemSave.setMnemonic(KeyEvent.VK_S);
         itemSaveAs.setMnemonic(KeyEvent.VK_A);
  
-        // Thêm các mục menu cha vào menu chính của Frame
+        // ThÃªm cÃ¡c má»¥c menu cha vÃ o menu chÃ­nh cá»§a Frame
         menuBar.add(mFile);
         menuBar.add(itemAbout);
-        // Riêng menu cha About ta không thêm menu con vào vì mục About chỉ có 1 lựa chọn duy nhất
+        // RiÃªng menu cha About ta khÃ´ng thÃªm menu con vÃ o vÃ¬ má»¥c About chá»‰ cÃ³ 1 lá»±a chá»�n duy nháº¥t
  
-        // Thêm menu chính vào Frame
+        // ThÃªm menu chÃ­nh vÃ o Frame
         this.setJMenuBar(menuBar);
-        // Vì đây là JMenuBar nên khi đặt menu các bạn phải dùng phương thức setJMenuBar
+        // VÃ¬ Ä‘Ã¢y lÃ  JMenuBar nÃªn khi Ä‘áº·t menu cÃ¡c báº¡n pháº£i dÃ¹ng phÆ°Æ¡ng thá»©c setJMenuBar
  
         this.setSize(400, 300);
         this.setVisible(true);
@@ -53,29 +53,29 @@ public class tryMenubar extends JFrame implements ActionListener{
     
     @Override
     public void actionPerformed(ActionEvent e){
-        // bắt sự kiện theo cách 1
-        // nếu chọn about
+        // báº¯t sá»± kiá»‡n theo cÃ¡ch 1
+        // náº¿u chá»�n about
         if(e.getSource() == itemAbout ){
-            JOptionPane.showMessageDialog(null, "Bạn vừa chọn About", "Thông báo", JOptionPane.CLOSED_OPTION);
+            JOptionPane.showMessageDialog(null, "Báº¡n vá»«a chá»�n About", "ThÃ´ng bÃ¡o", JOptionPane.CLOSED_OPTION);
         }
  
-        // nếu chọn new
+        // náº¿u chá»�n new
         if(e.getSource() == itemNew ){
-            JOptionPane.showMessageDialog(null, "Bạn vừa chọn New ", "Thông báo", JOptionPane.CLOSED_OPTION);
+            JOptionPane.showMessageDialog(null, "Báº¡n vá»«a chá»�n New ", "ThÃ´ng bÃ¡o", JOptionPane.CLOSED_OPTION);
         }
  
-        // bắt sự kiện theo cách 2
-        // nếu chọn Open
+        // báº¯t sá»± kiá»‡n theo cÃ¡ch 2
+        // náº¿u chá»�n Open
         if(e.getActionCommand().equalsIgnoreCase("Open") ){
-            JOptionPane.showMessageDialog(null, "Bạn vừa chọn Open ", "Thông báo", JOptionPane.CLOSED_OPTION);
+            JOptionPane.showMessageDialog(null, "Báº¡n vá»«a chá»�n Open ", "ThÃ´ng bÃ¡o", JOptionPane.CLOSED_OPTION);
         }
  
         if(e.getActionCommand().equalsIgnoreCase("Save") ){
-            JOptionPane.showMessageDialog(null, "Bạn vừa chọn Save ", "Thông báo", JOptionPane.CLOSED_OPTION);
+            JOptionPane.showMessageDialog(null, "Báº¡n vá»«a chá»�n Save ", "ThÃ´ng bÃ¡o", JOptionPane.CLOSED_OPTION);
         }
  
         if(e.getActionCommand().equalsIgnoreCase("Save As") ){
-            JOptionPane.showMessageDialog(null, "Bạn vừa chọn Save As", "Thông báo", JOptionPane.CLOSED_OPTION);
+            JOptionPane.showMessageDialog(null, "Báº¡n vá»«a chá»�n Save As", "ThÃ´ng bÃ¡o", JOptionPane.CLOSED_OPTION);
         }
     }
  
