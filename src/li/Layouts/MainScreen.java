@@ -367,10 +367,18 @@ public class MainScreen {
         
         
         // create an shortcut for item
+        mFile.setMnemonic(KeyEvent.VK_F);
+        mFile1.setMnemonic(KeyEvent.VK_E);
+        mFile2.setMnemonic(KeyEvent.VK_T);
         itemNew.setMnemonic(KeyEvent.VK_N);
         itemOpen.setMnemonic(KeyEvent.VK_O);
         itemSave.setMnemonic(KeyEvent.VK_S);
         itemSaveAs.setMnemonic(KeyEvent.VK_A);
+        itemAdd1.setMnemonic(KeyEvent.VK_H);
+        itemAdd2.setMnemonic(KeyEvent.VK_S);
+        itemAdd3.setMnemonic(KeyEvent.VK_C);
+        itemAdd4.setMnemonic(KeyEvent.VK_B);
+        itemDel.setMnemonic(KeyEvent.VK_D);
  
         // add menu in menubar
         menuBar.add(mFile);
