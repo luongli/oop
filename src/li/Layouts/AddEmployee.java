@@ -1,6 +1,7 @@
 package li.Layouts;
 
 import java.awt.BorderLayout;
+import java.awt.Dialog;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -33,7 +34,7 @@ public class AddEmployee extends JDialog {
 	 * Create the dialog.
 	 */
 	public AddEmployee() {
-		setBounds(250, 250, 554, 300);
+		setBounds(350, 250, 554, 300);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -43,7 +44,8 @@ public class AddEmployee extends JDialog {
 			btnNewButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					HourlyGUI hourlyEmployee = new HourlyGUI();
-					hourlyEmployee.setVisible(true);
+					hourlyEmployee.setModalityType(Dialog.ModalityType.DOCUMENT_MODAL);
+					hourlyEmployee.setVisible(true);										
 				}
 			});
 			btnNewButton.setBounds(43, 44, 194, 36);
@@ -54,6 +56,7 @@ public class AddEmployee extends JDialog {
 			btnNewButton_1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					SalariedGUI salariedEmployee = new SalariedGUI();
+					salariedEmployee.setModalityType(Dialog.ModalityType.DOCUMENT_MODAL);
 					salariedEmployee.setVisible(true);
 				}
 			});
@@ -65,6 +68,7 @@ public class AddEmployee extends JDialog {
 			btnNewButton_2.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					CommissionGUI commissionEmployee = new CommissionGUI();
+					commissionEmployee.setModalityType(Dialog.ModalityType.DOCUMENT_MODAL);
 					commissionEmployee.setVisible(true);
 				}
 			});
@@ -76,6 +80,7 @@ public class AddEmployee extends JDialog {
 			btnNewButton_3.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					BasePlusCommissionGUI BPCEmployee = new BasePlusCommissionGUI();
+					BPCEmployee.setModalityType(Dialog.ModalityType.DOCUMENT_MODAL);
 					BPCEmployee.setVisible(true);
 				}
 			});
@@ -91,14 +96,14 @@ public class AddEmployee extends JDialog {
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
-			{
-				JButton okButton = new JButton("OK");
-				okButton.setActionCommand("OK");
-				buttonPane.add(okButton);
-				getRootPane().setDefaultButton(okButton);
-			}
+			
 			{
 				JButton cancelButton = new JButton("Cancel");
+				cancelButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						dispose();
+					}
+				});
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
