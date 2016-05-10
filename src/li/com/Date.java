@@ -1,6 +1,6 @@
 package li.com;
-
-public class Date {
+import java.io.Serializable;
+public class Date implements Serializable {
 	public static final String Jan = "Jan";
 	public static final String Feb = "Feb";
 	public static final String Mar = "Mar";

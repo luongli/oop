@@ -2,12 +2,12 @@
  * 
  */
 package li.com;
-
+import java.io.Serializable;
 /**
  * @author li
  *
  */
-public abstract class Employee implements Payable {
+public abstract class Employee implements Payable, Serializable {
 	private String firstName;
 	private String lastName;
 	private String socialSecurityNumber;
