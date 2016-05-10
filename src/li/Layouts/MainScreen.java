@@ -73,6 +73,30 @@ public class MainScreen {
 	public void setCurrentDepartment(Department currentDepartment) {
 		this.currentDepartment = currentDepartment;
 	}
+	
+	public void updateTable() {
+		Employee es[] = currentDepartment.getEmployees();
+		int size = currentDepartment.getCurrentSize();
+		Object obs[][] = new Object[size][5];
+		for(int i = 0; i < size; i++) {
+			obs[i][0] = new Integer(i);
+			obs[i][1] = es[i].getFirstName() + " " + es[i].getLastName();
+			obs[i][2] = es[i].getBirthday().toString();
+			obs[i][3] = es[i].getSocialSecurityNumber();
+			obs[i][4] = es[i].getPaymentAmount();
+		}
+		table.setModel(new DefaultTableModel(obs,
+				new String[] {
+					"STT", "Name", "Birthday", "SSN", "Wage"
+				}
+		));
+		TableColumnModel columnModel = table.getColumnModel();
+		columnModel.getColumn(0).setPreferredWidth(30);
+		columnModel.getColumn(1).setPreferredWidth(150);
+		columnModel.getColumn(2).setPreferredWidth(100);
+		columnModel.getColumn(3).setPreferredWidth(130);
+		columnModel.getColumn(4).setPreferredWidth(150);
+	}
 
 	// elements of the main windows
 	private JMenuBar menuBar;
@@ -133,27 +157,7 @@ public class MainScreen {
 			{
 				index = list.getSelectedIndex();
 				currentDepartment = (Department) company.get(index);
-				Employee es[] = currentDepartment.getEmployees();
-				int size = currentDepartment.getCurrentSize();
-				Object obs[][] = new Object[size][5];
-				for(int i = 0; i < size; i++) {
-					obs[i][0] = new Integer(i);
-					obs[i][1] = es[i].getFirstName() + " " + es[i].getLastName();
-					obs[i][2] = es[i].getBirthday().toString();
-					obs[i][3] = es[i].getSocialSecurityNumber();
-					obs[i][4] = es[i].getPaymentAmount();
-				}
-				table.setModel(new DefaultTableModel(obs,
-						new String[] {
-							"STT", "Name", "Birthday", "SSN", "Wage"
-						}
-				));
-				TableColumnModel columnModel = table.getColumnModel();
-				columnModel.getColumn(0).setPreferredWidth(30);
-				columnModel.getColumn(1).setPreferredWidth(150);
-				columnModel.getColumn(2).setPreferredWidth(100);
-				columnModel.getColumn(3).setPreferredWidth(130);
-				columnModel.getColumn(4).setPreferredWidth(150);
+				updateTable();
 			} // end method valueChanged
 		}); // end call to addListSelectionListener
 		//test
@@ -368,6 +372,7 @@ public class MainScreen {
 	    		SalariedGUI salariedEmployee = new SalariedGUI();
 				salariedEmployee.setModalityType(Dialog.ModalityType.DOCUMENT_MODAL);
 				salariedEmployee.setVisible(true);
+				currentDepartment.addEmployee(salariedEmployee.getSe());
 	    	}
 	    });
 	    JMenuItem itemAdd3 = new JMenuItem("Add Commission Employee");

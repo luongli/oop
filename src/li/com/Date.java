@@ -109,4 +109,11 @@ public class Date implements Serializable {
 	public String toString(){
 		return day + "/" + month + "/" + year;
 	}
+	
+	public static Date parseDate(String date){
+		String s[] = date.split("/", 3);
+		return new Date(Integer.parseInt(s[0]),
+				Integer.parseInt(s[1]),
+				Integer.parseInt(s[2]));
+	}
 }
