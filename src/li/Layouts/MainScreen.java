@@ -154,50 +154,18 @@ public class MainScreen {
 				columnModel.getColumn(2).setPreferredWidth(100);
 				columnModel.getColumn(3).setPreferredWidth(130);
 				columnModel.getColumn(4).setPreferredWidth(150);
+				
+				DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+				centerRenderer.setHorizontalAlignment( SwingConstants.CENTER );
+				table.getColumnModel().getColumn(0).setCellRenderer( centerRenderer );
+				table.getColumnModel().getColumn(2).setCellRenderer( centerRenderer );
+				table.getColumnModel().getColumn(3).setCellRenderer( centerRenderer );
+				table.getColumnModel().getColumn(4).setCellRenderer( centerRenderer );
 			} // end method valueChanged
-		}); // end call to addListSelectionListener
-		//test
-		JButton btn_Add = new JButton("Add");
-		btn_Add.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				AddEmployee addEmployee = new AddEmployee();
-				addEmployee.setModalityType(Dialog.ModalityType.DOCUMENT_MODAL);
-				addEmployee.setVisible(true);
-			}
 		});
-		btn_Add.setFont(new Font("Tahoma", Font.PLAIN, 18));
-
-		btn_Add.setBounds(718, 40, 89, 42);
-		frame.getContentPane().add(btn_Add);
-		
-		JButton btn_delete = new JButton("Delete");
-		btn_delete.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btn_delete.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				// TODO:
-			}
-		});
-		btn_delete.setBounds(718, 101, 89, 42);
-		frame.getContentPane().add(btn_delete);
-		
-		JButton btn_Mod = new JButton("Update");
-		btn_Mod.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btn_Mod.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				// TODO
-				JOptionPane.showMessageDialog(null, "huyhuyhuy ", "ThÃ´ng bÃ¡o", JOptionPane.CLOSED_OPTION);
-			}
-		});
-		btn_Mod.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btn_Mod.setBounds(718, 164, 89, 42);
-		frame.getContentPane().add(btn_Mod);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(160, 23, 548, 364);
+		scrollPane.setBounds(160, 23, 608, 359);
 		frame.getContentPane().add(scrollPane);
 		
 		table = new JTable();
@@ -243,19 +211,14 @@ public class MainScreen {
 
 		
 		TableColumnModel columnModel = table.getColumnModel();
-		columnModel.getColumn(0).setPreferredWidth(10);
+		columnModel.getColumn(0).setPreferredWidth(30);
 		columnModel.getColumn(1).setPreferredWidth(150);
 		columnModel.getColumn(2).setPreferredWidth(100);
 		columnModel.getColumn(3).setPreferredWidth(100);
 		columnModel.getColumn(4).setPreferredWidth(180);
 		scrollPane.setViewportView(table);
 		
-		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-		centerRenderer.setHorizontalAlignment( SwingConstants.CENTER );
-		table.getColumnModel().getColumn(0).setCellRenderer( centerRenderer );
-		table.getColumnModel().getColumn(2).setCellRenderer( centerRenderer );
-		table.getColumnModel().getColumn(3).setCellRenderer( centerRenderer );
-		table.getColumnModel().getColumn(4).setCellRenderer( centerRenderer );
+		
 		
 		int sum = 0;
 		for (int i = 1; i < table.getRowCount(); i++) {
@@ -388,7 +351,6 @@ public class MainScreen {
 	    	
 	    });
 	    JMenuItem itemDel = new JMenuItem("Delete Employee");
-	    JMenuItem itemMod = new JMenuItem("Modify Employee");
 	    
 	    // add item for menu FILE
         mFile.add(itemNew);
@@ -402,7 +364,7 @@ public class MainScreen {
         mFile1.add(itemAdd3);
         mFile1.add(itemAdd4);
         mFile1.add(itemDel);
-        mFile1.add(itemMod);
+        
         
         // create an shortcut for item
         itemNew.setMnemonic(KeyEvent.VK_N);
