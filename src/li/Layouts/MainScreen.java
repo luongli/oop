@@ -43,11 +43,16 @@ import li.com.Employee;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.function.DoubleToIntFunction;
+
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.InputMethodListener;
+import java.awt.event.InputMethodEvent;
+import java.awt.event.KeyAdapter;
 
 public class MainScreen {
 
@@ -57,6 +62,8 @@ public class MainScreen {
 	private String path;
 	private ArrayList company;
 	private int nDepartment;
+	private int index;
+	private Department currentDepartment = null;
 	
 	
 	// elements of the main windows
@@ -116,10 +123,10 @@ public class MainScreen {
 			// handle list selection events
 			public void valueChanged( ListSelectionEvent event )
 			{
-				int index = list.getSelectedIndex();
-				Department d = (Department) company.get(index);
-				Employee es[] = d.getEmployees();
-				int size = d.getCurrentSize();
+				index = list.getSelectedIndex();
+				currentDepartment = (Department) company.get(index);
+				Employee es[] = currentDepartment.getEmployees();
+				int size = currentDepartment.getCurrentSize();
 				Object obs[][] = new Object[size][5];
 				for(int i = 0; i < size; i++) {
 					obs[i][0] = new Integer(i);
@@ -165,7 +172,11 @@ public class MainScreen {
 		btn_delete.setBounds(718, 101, 89, 42);
 		frame.getContentPane().add(btn_delete);
 		
-		JButton btn_Mod = new JButton("Modify");
+		JButton btn_Mod = new JButton("Update");
+		btn_Mod.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btn_Mod.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -182,6 +193,36 @@ public class MainScreen {
 		frame.getContentPane().add(scrollPane);
 		
 		table = new JTable();
+		
+		table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {  
+			   
+            public void valueChanged(ListSelectionEvent e) {  
+                //I want something to happen before the row change is triggered on the UI.  
+               //System.out.println("activated"); 
+            }  
+        }); 
+		
+		table.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent arg0) {
+				System.out.println("activated");
+				String s = (String) table.getModel().getValueAt(
+						table.getEditingColumn(),
+						table.getEditingRow()
+				);
+				System.out.println(s);
+			}
+			@Override
+			public void keyPressed(KeyEvent arg0) {
+				System.out.println("activated");
+			}
+		});
+		table.addInputMethodListener(new InputMethodListener() {
+			public void caretPositionChanged(InputMethodEvent arg0) {
+			}
+			public void inputMethodTextChanged(InputMethodEvent arg0) {
+			}
+		});
 		table.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		table.setRowHeight(40);
 		
@@ -225,8 +266,18 @@ public class MainScreen {
 		btn_Sum.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btn_Sum.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				text_sum.setText(Integer.toString(sumfinal));
+				if(currentDepartment == null){
+					JOptionPane.showMessageDialog(null,
+							"You must select a department first",
+							"Error", JOptionPane.ERROR_MESSAGE);
+				}else{
+					Employee es[] = currentDepartment.getEmployees();
+					double sum = 0;
+					for(int i = 0; i < currentDepartment.getCurrentSize(); i++) {
+						sum += es[i].getPaymentAmount();
+					}
+					text_sum.setText(new Double(sum).toString());
+				}
 			}
 		});
 		btn_Sum.setBounds(173, 416, 111, 45);
