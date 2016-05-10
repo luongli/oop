@@ -1,89 +1,113 @@
 package li.Layouts;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JComboBox;
-import javax.swing.JSpinner;
-import javax.swing.JMenu;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.JEditorPane;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import java.awt.BorderLayout;
+import java.awt.Dialog;
+import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class AddEmployee {
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
 
-	private JFrame frame;
+public class AddEmployee extends JDialog {
+
+	private final JPanel contentPanel = new JPanel();
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					AddEmployee window = new AddEmployee();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+		try {
+			AddEmployee dialog = new AddEmployee();
+			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dialog.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
-	 * Create the application.
+	 * Create the dialog.
 	 */
 	public AddEmployee() {
-		initialize();
+		setBounds(350, 250, 554, 300);
+		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		getContentPane().add(contentPanel, BorderLayout.CENTER);
+		contentPanel.setLayout(null);
+		{
+			JButton btnNewButton = new JButton("Hourly Employee");
+			btnNewButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					HourlyGUI hourlyEmployee = new HourlyGUI();
+					hourlyEmployee.setModalityType(Dialog.ModalityType.DOCUMENT_MODAL);
+					hourlyEmployee.setVisible(true);										
+				}
+			});
+			btnNewButton.setBounds(43, 44, 194, 36);
+			contentPanel.add(btnNewButton);
+		}
+		{
+			JButton btnNewButton_1 = new JButton("Salaried Employee");
+			btnNewButton_1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					SalariedGUI salariedEmployee = new SalariedGUI();
+					salariedEmployee.setModalityType(Dialog.ModalityType.DOCUMENT_MODAL);
+					salariedEmployee.setVisible(true);
+				}
+			});
+			btnNewButton_1.setBounds(309, 44, 194, 36);
+			contentPanel.add(btnNewButton_1);
+		}
+		{
+			JButton btnNewButton_2 = new JButton("Commission Employee");
+			btnNewButton_2.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					CommissionGUI commissionEmployee = new CommissionGUI();
+					commissionEmployee.setModalityType(Dialog.ModalityType.DOCUMENT_MODAL);
+					commissionEmployee.setVisible(true);
+				}
+			});
+			btnNewButton_2.setBounds(43, 120, 194, 36);
+			contentPanel.add(btnNewButton_2);
+		}
+		{
+			JButton btnNewButton_3 = new JButton("Base Plus Commission Employee");
+			btnNewButton_3.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					BasePlusCommissionGUI BPCEmployee = new BasePlusCommissionGUI();
+					BPCEmployee.setModalityType(Dialog.ModalityType.DOCUMENT_MODAL);
+					BPCEmployee.setVisible(true);
+				}
+			});
+			btnNewButton_3.setBounds(309, 120, 194, 36);
+			contentPanel.add(btnNewButton_3);
+		}
+		{
+			JTextField newTitle = new JTextField("Add Employee");
+	        newTitle.setBounds(80, 40, 225, 20);
+	        setTitle(newTitle.getText());
+			
+			
+			JPanel buttonPane = new JPanel();
+			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
+			getContentPane().add(buttonPane, BorderLayout.SOUTH);
+			
+			{
+				JButton cancelButton = new JButton("Cancel");
+				cancelButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						dispose();
+					}
+				});
+				cancelButton.setActionCommand("Cancel");
+				buttonPane.add(cancelButton);
+			}
+		}
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 748, 333);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
-		
-		JTextField newTitle = new JTextField("Add Employee");
-        newTitle.setBounds(80, 40, 225, 20);
-        frame.setTitle(newTitle.getText());
-		
-		JButton btnNewButton = new JButton("Hourly Employee");
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnNewButton.setBounds(45, 38, 295, 54);
-		frame.getContentPane().add(btnNewButton);
-		
-		JButton btnNewButton_1 = new JButton("Salaried Employee");
-		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnNewButton_1.setBounds(45, 138, 295, 54);
-		frame.getContentPane().add(btnNewButton_1);
-		
-		JButton btnNewButton_2 = new JButton("Base Plus Commission Employee");
-		btnNewButton_2.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnNewButton_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnNewButton_2.setBounds(413, 38, 295, 54);
-		frame.getContentPane().add(btnNewButton_2);
-		
-		JButton btnNewButton_3 = new JButton("Commission Employee");
-		btnNewButton_3.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnNewButton_3.setBounds(413, 138, 295, 54);
-		frame.getContentPane().add(btnNewButton_3);
-		
-		JButton btnNewButton_4 = new JButton("Cancel");
-		btnNewButton_4.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnNewButton_4.setBounds(517, 234, 106, 39);
-		frame.getContentPane().add(btnNewButton_4);
-	    //Object cmboitem = comboBox.getSelectedItem();
-	    
-	    frame.setVisible(true);
-	}
 }

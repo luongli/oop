@@ -32,6 +32,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.JTable;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
@@ -141,12 +142,7 @@ public class MainScreen {
 		
 		JButton btn_Add = new JButton("Add");
 		btn_Add.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btn_Add.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				// TODO
-				JOptionPane.showMessageDialog(null, "chimchim ", "ThÃ´ng bÃ¡o", JOptionPane.CLOSED_OPTION);
-			}
-		});
+
 		btn_Add.setBounds(718, 40, 89, 42);
 		frame.getContentPane().add(btn_Add);
 		
@@ -186,6 +182,7 @@ public class MainScreen {
 					"STT", "Name", "Birthday", "SSN", "Wage"
 				}
 			));
+
 		
 		TableColumnModel columnModel = table.getColumnModel();
 		columnModel.getColumn(0).setPreferredWidth(10);
@@ -195,6 +192,12 @@ public class MainScreen {
 		columnModel.getColumn(4).setPreferredWidth(180);
 		scrollPane.setViewportView(table);
 		
+		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+		centerRenderer.setHorizontalAlignment( SwingConstants.CENTER );
+		table.getColumnModel().getColumn(0).setCellRenderer( centerRenderer );
+		table.getColumnModel().getColumn(2).setCellRenderer( centerRenderer );
+		table.getColumnModel().getColumn(3).setCellRenderer( centerRenderer );
+		table.getColumnModel().getColumn(4).setCellRenderer( centerRenderer );
 		
 		int sum = 0;
 		for (int i = 1; i < table.getRowCount(); i++) {
