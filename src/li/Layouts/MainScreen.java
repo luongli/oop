@@ -174,19 +174,6 @@ public class MainScreen {
 		table.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		table.setRowHeight(40);
 		
-		
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{new Integer(1), "Monkey D. Luffy", null, new Integer(20131802), new Integer(500)},
-				{new Integer(2), "Hohohaha", null, new Integer(201343789), new Integer(200)},
-				{new Integer(3), "\u0110\u1EA1i du", null, new Integer(201387584), new Integer(100)},
-				{new Integer(4), "pikachu", null, new Integer(23901842), new Integer(144)},
-			},
-			new String[] {
-				"STT", "Name", "Birthday", "SSN", "Wage"
-			}
-		));
-		
 		TableColumnModel columnModel = table.getColumnModel();
 		columnModel.getColumn(0).setPreferredWidth(30);
 		columnModel.getColumn(1).setPreferredWidth(150);
