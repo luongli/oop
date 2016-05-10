@@ -27,7 +27,6 @@ public class SalariedGUI extends JDialog {
 	private JTextField textField_8;
 	private JTextField textField_9;
 	private JTextField textField_10;
-	private JTextField textField_11;
 
 	/**
 	 * Launch the application.
@@ -114,18 +113,6 @@ public class SalariedGUI extends JDialog {
 			textField_10.setBounds(459, 24, 86, 20);
 			contentPanel.add(textField_10);
 			textField_10.setColumns(10);
-		}
-		{
-			JLabel lblHours = new JLabel("Base Salary");
-			lblHours.setFont(new Font("Tahoma", Font.PLAIN, 14));
-			lblHours.setBounds(361, 79, 88, 19);
-			contentPanel.add(lblHours);
-		}
-		{
-			textField_11 = new JTextField();
-			textField_11.setBounds(459, 78, 86, 20);
-			contentPanel.add(textField_11);
-			textField_11.setColumns(10);
 		}
 	
 		{

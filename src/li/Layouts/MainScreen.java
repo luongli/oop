@@ -66,6 +66,14 @@ public class MainScreen {
 	private Department currentDepartment = null;
 	
 	
+	public Department getCurrentDepartment() {
+		return currentDepartment;
+	}
+
+	public void setCurrentDepartment(Department currentDepartment) {
+		this.currentDepartment = currentDepartment;
+	}
+
 	// elements of the main windows
 	private JMenuBar menuBar;
 
