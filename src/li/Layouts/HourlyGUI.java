@@ -1,129 +1,149 @@
 package li.Layouts;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JTextPane;
-import javax.swing.JTextArea;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import java.awt.Font;
+
 import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
 
-public class HourlyGUI {
+public class HourlyGUI extends JDialog {
 
-	private JFrame frame;
+	private final JPanel contentPanel = new JPanel();
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
 	private JTextField textField_4;
 	private JTextField textField_5;
+	private JTextField textField_6;
+	private JTextField textField_7;
+	private JTextField textField_8;
+	private JTextField textField_9;
+	private JTextField textField_10;
+	private JTextField textField_11;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					HourlyGUI window = new HourlyGUI();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+		try {
+			HourlyGUI dialog = new HourlyGUI();
+			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dialog.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
-	 * Create the application.
+	 * Create the dialog.
 	 */
 	public HourlyGUI() {
-		initialize();
-	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 840, 420);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
-		
+		setBounds(100, 100, 620, 310);
+		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		getContentPane().add(contentPanel, BorderLayout.CENTER);
+		contentPanel.setLayout(null);
 		JTextField newTitle = new JTextField("Hourly Employee");
         newTitle.setBounds(80, 40, 225, 20);
-        frame.setTitle(newTitle.getText());
-        
-		JLabel lblFirstName = new JLabel("First name");
-		lblFirstName.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblFirstName.setBounds(37, 36, 82, 30);
-		frame.getContentPane().add(lblFirstName);
+        setTitle(newTitle.getText());
+		{
+			JLabel lblFirstName = new JLabel("First name");
+			lblFirstName.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			lblFirstName.setBounds(51, 21, 80, 27);
+			contentPanel.add(lblFirstName);
+		}
+		{
+			textField_6 = new JTextField();
+			textField_6.setBounds(206, 26, 86, 20);
+			contentPanel.add(textField_6);
+			textField_6.setColumns(10);
+		}
+		{
+			JLabel lblLastName = new JLabel("Last name");
+			lblLastName.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			lblLastName.setBounds(51, 81, 80, 14);
+			contentPanel.add(lblLastName);
+		}
+		{
+			textField_7 = new JTextField();
+			textField_7.setBounds(206, 80, 86, 20);
+			contentPanel.add(textField_7);
+			textField_7.setColumns(10);
+		}
+		{
+			JLabel lblNewLabel = new JLabel("Social Security Number");
+			lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			lblNewLabel.setBounds(51, 135, 146, 14);
+			contentPanel.add(lblNewLabel);
+		}
+		{
+			textField_8 = new JTextField();
+			textField_8.setBounds(206, 134, 86, 20);
+			contentPanel.add(textField_8);
+			textField_8.setColumns(10);
+		}
+		{
+			JLabel lblNewLabel_1 = new JLabel("Birthday");
+			lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			lblNewLabel_1.setBounds(51, 191, 80, 19);
+			contentPanel.add(lblNewLabel_1);
+		}
+		{
+			textField_9 = new JTextField();
+			textField_9.setBounds(206, 190, 86, 20);
+			contentPanel.add(textField_9);
+			textField_9.setColumns(10);
+		}
+		{
+			JLabel lblWage = new JLabel("Wage");
+			lblWage.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			lblWage.setBounds(376, 27, 46, 14);
+			contentPanel.add(lblWage);
+		}
+		{
+			textField_10 = new JTextField();
+			textField_10.setBounds(459, 24, 86, 20);
+			contentPanel.add(textField_10);
+			textField_10.setColumns(10);
+		}
+		{
+			JLabel lblHours = new JLabel("Hours");
+			lblHours.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			lblHours.setBounds(376, 81, 46, 14);
+			contentPanel.add(lblHours);
+		}
+		{
+			textField_11 = new JTextField();
+			textField_11.setBounds(459, 78, 86, 20);
+			contentPanel.add(textField_11);
+			textField_11.setColumns(10);
+		}
+	
+	
 		
-		JLabel lblLastName = new JLabel("Last name");
-		lblLastName.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblLastName.setBounds(37, 108, 82, 30);
-		frame.getContentPane().add(lblLastName);
 		
-		textField = new JTextField();
-		textField.setBounds(266, 108, 135, 30);
-		frame.getContentPane().add(textField);
-		textField.setColumns(10);
-		
-		JLabel lblSocialSecurityNumber = new JLabel("Social Security Number");
-		lblSocialSecurityNumber.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblSocialSecurityNumber.setBounds(37, 167, 219, 30);
-		frame.getContentPane().add(lblSocialSecurityNumber);
-		
-		textField_1 = new JTextField();
-		textField_1.setBounds(266, 167, 135, 30);
-		frame.getContentPane().add(textField_1);
-		textField_1.setColumns(10);
-		
-		textField_2 = new JTextField();
-		textField_2.setBounds(266, 36, 135, 30);
-		frame.getContentPane().add(textField_2);
-		textField_2.setColumns(10);
-		
-		JLabel lblBirthday = new JLabel("Birthday");
-		lblBirthday.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblBirthday.setBounds(37, 226, 114, 30);
-		frame.getContentPane().add(lblBirthday);
-		
-		textField_3 = new JTextField();
-		textField_3.setBounds(266, 229, 135, 30);
-		frame.getContentPane().add(textField_3);
-		textField_3.setColumns(10);
-		
-		JLabel lblWage = new JLabel("Wage");
-		lblWage.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblWage.setBounds(453, 36, 97, 30);
-		frame.getContentPane().add(lblWage);
-		
-		JLabel lblHour = new JLabel("Hour");
-		lblHour.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblHour.setBounds(453, 108, 99, 30);
-		frame.getContentPane().add(lblHour);
-		
-		JButton btnAdd = new JButton("Add");
-		btnAdd.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnAdd.setBounds(453, 319, 107, 39);
-		frame.getContentPane().add(btnAdd);
-		
-		JButton btnCancel = new JButton("Cancel");
-		btnCancel.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnCancel.setBounds(623, 319, 97, 39);
-		frame.getContentPane().add(btnCancel);
-		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setBounds(560, 36, 135, 30);
-		frame.getContentPane().add(textField_4);
-		
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		textField_5.setBounds(562, 108, 135, 30);
-		frame.getContentPane().add(textField_5);
+		{
+			JPanel buttonPane = new JPanel();
+			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
+			getContentPane().add(buttonPane, BorderLayout.SOUTH);
+			{
+				JButton okButton = new JButton("OK");
+				okButton.setActionCommand("OK");
+				buttonPane.add(okButton);
+				getRootPane().setDefaultButton(okButton);
+			}
+			{
+				JButton cancelButton = new JButton("Cancel");
+				cancelButton.setActionCommand("Cancel");
+				buttonPane.add(cancelButton);
+			}
+		}
 	}
+
 }
