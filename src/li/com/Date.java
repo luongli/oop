@@ -104,4 +104,9 @@ public class Date implements Serializable {
 			return true;
 		return false;
 	} // end method checkDay
+	
+	@Override
+	public String toString(){
+		return day + "/" + month + "/" + year;
+	}
 }

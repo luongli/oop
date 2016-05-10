@@ -93,22 +93,45 @@ public class MainScreen {
 		
 		JList list;
 		// Create some items to add to the list
-		final String[] listData = {
-					"PhÃ²ng R&D", "PhÃ²ng Ná»™i Vá»¥",
-					"PhÃ²ng Ä�á»‘i Ngoáº¡i", "PhÃ²ng Ká»‰ Luáº­t",
-					"PhÃ²ng VÄƒn ThÆ°", "PhÃ²ng Thanh Tra",
-					"PhÃ²ng Marketing" 	};
 		final Color[] colors = { Color.BLACK, Color.BLUE,
 						Color.CYAN, Color.DARK_GRAY, Color.GRAY, Color.GREEN,
 						Color.LIGHT_GRAY, Color.MAGENTA, Color.ORANGE, Color.PINK,
 						Color.RED, Color.WHITE, Color.YELLOW };
-		list = new JList( listData );
+		list = new JList();
 		list.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		list.setBounds(10, 11, 128, 395);
 		frame.getContentPane().add(list);
 		list.setVisibleRowCount( 5 );
 		// do not allow multiple selections
 		list.setSelectionMode( ListSelectionModel.SINGLE_SELECTION );
+		
+		/**
+		 * handle list event
+		 */
+		// add a JScrollPane containing JList to frame
+		list.addListSelectionListener(new ListSelectionListener() { // anonymous inner class
+			// handle list selection events
+			public void valueChanged( ListSelectionEvent event )
+			{
+				int index = list.getSelectedIndex();
+				Department d = (Department) company.get(index);
+				Employee es[] = d.getEmployees();
+				int size = d.getCurrentSize();
+				Object obs[][] = new Object[size][5];
+				for(int i = 0; i < size; i++) {
+					obs[i][0] = new Integer(i);
+					obs[i][1] = es[i].getFirstName() + es[i].getLastName();
+					obs[i][2] = es[i].getBirthday().toString();
+					obs[i][3] = es[i].getSocialSecurityNumber();
+					obs[i][4] = es[i].getPaymentAmount();
+				}
+				table.setModel(new DefaultTableModel(obs,
+						new String[] {
+							"STT", "Name", "Birthday", "SSN", "Wage"
+						}
+					));
+			} // end method valueChanged
+		}); // end call to addListSelectionListener
 		
 		JButton btn_Add = new JButton("Add");
 		btn_Add.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -163,6 +186,7 @@ public class MainScreen {
 				"STT", "Name", "Birthday", "SSN", "Wage"
 			}
 		));
+		
 		TableColumnModel columnModel = table.getColumnModel();
 		columnModel.getColumn(0).setPreferredWidth(30);
 		columnModel.getColumn(1).setPreferredWidth(150);
@@ -197,23 +221,6 @@ public class MainScreen {
 		frame.getContentPane().add(btn_Sum);
 		
 		
-		
-		
-		// add a JScrollPane containing JList to frame
-		list.addListSelectionListener(
-				new ListSelectionListener() // anonymous inner class
-				{
-					// handle list selection events
-					public void valueChanged( ListSelectionEvent event )
-					{
-						frame.getContentPane().setBackground(
-								colors[ list.getSelectedIndex() ] );
-						
-					} // end method valueChanged
-				} // end anonymous inner class
-		); // end call to addListSelectionListener
-		
-		
 		menuBar = new JMenuBar();
 		frame.setJMenuBar(menuBar);
 		JMenu mFile = new JMenu("File");
@@ -246,16 +253,18 @@ public class MainScreen {
 		            in.close();//closes the input stream.
 		            fileIn.close();//closes the file data stream.
 		            nDepartment = company.size();
-		            Department d1 = (Department)company.get(0);
-		            Employee e[] = d1.getEmployees();
-		            System.out.println("length of e = " + e.length);
-		            System.out.println("currentSize = " + d1.getCurrentSize());
-		            for(int i = 0; i < d1.getCurrentSize(); i++){
-		            	System.out.println(e[i].getFirstName());
-		            }
+		            setDepartmentList(company);
 				}catch(Exception e){
-					System.out.println(e.toString());
+					JOptionPane.showMessageDialog(null, e.toString(), "alert", JOptionPane.ERROR_MESSAGE);;
 				}
+	    	}
+	    	
+	    	public void setDepartmentList(ArrayList company) {
+	    		String dNames[] = new String[nDepartment];
+	    		for(int i = 0; i < nDepartment; i++){
+	    			dNames[i] = ((Department) company.get(i)).getName();
+	    		}
+	    		list.setListData(dNames);
 	    	}
 	    });
 	    itemOpen.addMouseListener(new MouseAdapter() {
@@ -287,8 +296,5 @@ public class MainScreen {
         menuBar.add(itemAbout);
         // RiÃªng menu cha About ta khÃ´ng thÃªm menu con vÃ o vÃ¬ má»¥c About chá»‰ cÃ³ 1 lá»±a chá»�n duy nháº¥t
 
-       
-		
-		
 	}
 }
